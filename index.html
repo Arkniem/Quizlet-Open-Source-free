@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelliDeck AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            keyframes: {
+              'flip-horizontal': {
+                '50%': { transform: 'rotateY(180deg)' },
+              },
+              'pulse-bg': {
+                '0%, 100%': { 'background-color': 'rgba(129, 140, 248, 0.5)' },
+                '50%': { 'background-color': 'rgba(129, 140, 248, 0.2)' },
+              },
+               'shake': {
+                '0%, 100%': { transform: 'translateX(0)' },
+                '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-5px)' },
+                '20%, 40%, 60%, 80%': { transform: 'translateX(5px)' },
+              }
+            },
+            animation: {
+              'flip-horizontal': 'flip-horizontal 1s ease-in-out',
+              'pulse-bg': 'pulse-bg 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shake': 'shake 0.5s ease-in-out',
+            },
+            perspective: {
+              '1000': '1000px',
+            },
+            backfaceVisibility: {
+              'hidden': 'hidden',
+            },
+            transformStyle: {
+              'preserve-3d': 'preserve-3d',
+            },
+          },
+        },
+         plugins: [
+            function({ addUtilities }) {
+              const newUtilities = {
+                '.perspective-1000': {
+                  perspective: '1000px',
+                },
+                '.transform-style-preserve-3d': {
+                  transformStyle: 'preserve-3d',
+                },
+                '.backface-hidden': {
+                  backfaceVisibility: 'hidden',
+                },
+                '.rotate-y-180': {
+                    transform: 'rotateY(180deg)',
+                }
+              }
+              addUtilities(newUtilities)
+            }
+        ],
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-50 dark:bg-slate-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
